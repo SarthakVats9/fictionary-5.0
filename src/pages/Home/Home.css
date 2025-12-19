@@ -1,385 +1,241 @@
-body{
-  overflow-y: hidden;
-}
-.glowing {
-  box-shadow: 0 0 20px #3b96f0, 0 0 40px #74d4f0, 0 0 60px #daedef;
+/* ==============================
+   FONTS
+============================= */
+@font-face {
+  font-family: 'Technopath';
+  src: url('/assets/Technopath.otf') format('opentype');
 }
 
-.glowing-controls {
-  box-shadow: 0 0 20px #00ffea, 0 0 40px #00ffea, 0 0 60px #00ffea;
+@font-face {
+  font-family: 'OrbitronSoft';
+  src: url('/assets/Orbitron-Regular.ttf');
+}
+
+/* ==============================
+   GLOBAL RESET + SAFETY
+============================= */
+html, body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+
+  font-family: 'OrbitronSoft', sans-serif;
+  background: black;
+  overflow-x: hidden;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* ==============================
+   BACKGROUND IMAGE
+============================= */
+.home-bg {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+
+  background-image: url('/assets/bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  overflow: hidden;
+}
+
+/* ==============================
+   FOREGROUND CONTAINER
+============================= */
+.bg-container {
+  position: relative;
+  z-index: 2;
+
+  min-height: 100vh;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* spread items vertically */
+  padding: 40px 16px;
+}
+
+/* ==============================
+   TITLE
+============================= */
+.sign {
+  font-family: 'Technopath';
+  letter-spacing: 6px;
+  color: #eaffff;
+  text-align: center;
+  margin: 20px 0;
+  font-size: clamp(32px, 10vw, 48px);
+
+  text-shadow:
+    0 0 10px rgba(0, 255, 255, 0.6),
+    0 0 20px rgba(0, 255, 255, 0.4);
+
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+.sign:hover {
+  transform: scale(1.04);
+  text-shadow:
+    0 0 14px #00ffff,
+    0 0 36px #00ffff,
+    0 0 70px rgba(0, 255, 255, 0.9);
+}
+
+/* ==============================
+   SIGN IN / PLAY BUTTON
+============================= */
+.play {
+  font-family: 'Technopath';
+  padding: 10px 28px;  /* reduced size */
+  border: 2px solid #00ffee;
+  background: rgba(0, 40, 40, 0.85);
+  color: #00ffee;
+  border-radius: 6px;
+  letter-spacing: 3px;
+
+  box-shadow: 0 0 18px rgba(0, 255, 255, 0.6);
+
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.play:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 40px rgba(0, 255, 255, 1);
+}
+
+/* ==============================
+   SOCIAL ICONS
+============================= */
+.social-icons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+/* ==============================
+   CHARACTER + CTA
+============================= */
+.character-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
 }
 
 .character-sprite {
-  animation: character-idle 2s infinite;
+  width: 80px;
+  height: 80px;
+  image-rendering: pixelated;
 }
-
-.overlay-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
-  z-index: 1;
-}
-
-.play_now {
-  text-align: center;
-  margin-top: 1.75rem;
-}
-
-.retro-btn {
-  display: inline-block;
-  padding: 10px 20px;
-  font-family: 'Press Start 2P', sans-serif; /* Use a pixel font */
-  font-size: 16px;
-  color: #00ffcc;
-  text-decoration: none;
-  border: 2px solid #00ffcc;
-  background: linear-gradient(145deg, #000000, #0d0d0d);
-  box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc inset;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.retro-btn:hover {
-  color: #ff0099;
-  border-color: #ff0099;
-  box-shadow: 0 0 15px #ff0099, 0 0 25px #ff0099 inset;
-  transform: scale(1.1);
-}
-
-.time-up {
-  text-align: center;
-  font-size: 1.5em;
-  color: #ffcc33;
-}
-
-.arcade-text {
-  font-family: 'Press Start 2P', sans-serif;
-  text-transform: uppercase;
-  text-shadow: 2px 2px 0px #ff477e, -2px -2px 0px #33ccff;
-}
-
-.ComSoon {
-  text-align: center;
-  font-size: 2em;
-  color: #33ccff;
-  animation: blink 1s step-start infinite;
-}
-
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
-}
-
-.landing-sign-in {
-  font-family: 'Press Start 2P', sans-serif;
-  color: #ffffff;
-  background: #1a1a1a;
-  border: 2px solid #ff477e;
-  padding: 10px 20px;
-  cursor: pointer;
-  text-shadow: 2px 2px 0px #ffcc33;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-.landing-sign-in:hover {
-  color: #ff477e;
-  background: #ffcc33;
-  box-shadow: 0px 0px 10px 3px #ff477e;
-}
-
-@keyframes character-idle {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-5px);
-  }
-}
-@font-face {
-  font-family: 'myFont';
-  src: url(/assets/operius-mono.ttf); 
-}
-.font-operius{
-  font-family: myFont;
-}
-
-
-@keyframes slowPulse {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.1);
-    opacity: 0.7;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-
 
 .speech-bubble {
-  position: absolute;
-  top: -50px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 10px 15px;
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  font-family: "PixelFont", sans-serif;
-  font-size: 14px;
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+  margin-top: 6px;
+  padding: 6px 10px;
+
+  background: rgba(0, 0, 0, 0.85);
+  border: 2px solid #00ffee;
+  border-radius: 6px;
+
+  color: #00ffee;
+  font-size: 12px;
+  text-align: center;
+
+  box-shadow: 0 0 12px #00ffee;
 }
 
-/* Neon Buttons */
-.touch-controls {
-  display: flex;
-  justify-content: space-around;
-  width: 60%;
-  margin: 20px auto;
-  position: absolute;
-  bottom: 10%;
+/* ==============================
+   FOOTER
+============================= */
+.footer {
+  opacity: 0.8;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 12px;
 }
 
-.control-button {
-  width: 60px;
-  height: 60px;
-  border: none;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: white;
-  font-size: 24px;
-  font-family: "PixelFont", sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.7);
-  transition: background-color 0.2s, box-shadow 0.5s;
-}
+/* ==============================
+   RESPONSIVE — TABLET & MOBILE
+============================= */
+@media (max-width: 768px) {
 
-.control-button:hover {
-  background-color: rgba(255, 255, 255, 0.3);
-}
-
-.play-text {
-  font-size: 2rem; 
-  font-weight: 500; 
-  text-shadow: 
-    0 0 5px #d585ed, 
-    0 0 10px #d586eb, 
-    0 0 20px #e990eb; 
-  color: #00ffff; 
-  transition: text-shadow 0.3s ease, color 0.3s ease;
-}
-
-.glowing {
-  box-shadow: 
-    0 0 15px #aaebeb, 
-    0 0 30px #95eff4, 
-    0 0 45px #8dd3ea; 
-  border: 2px solid #ff007f; 
-}
-
-.neonEffect:hover .play-text {
-  text-shadow: 
-    0 0 10px #0000ff, 
-    0 0 20px #1246b5, 
-    0 0 30px #ff007f;
-  color: #90e2eb;
-}
-
-
-.sign {
-
-  width: 50%;
-  height: 50%;
- 
-  transform: translate(-50%, -50%);
-  letter-spacing: 2;
-  display: inline-block;
-
-  text-transform: uppercase;
-  color: #ffe6ff;
-  text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem #ff65bd,
-    -0.2rem 0.1rem 1rem #a6edf9, 0.2rem 0.1rem 1rem #99dff7,
-    0 -0.5rem 2rem #4daef8, 0 0.5rem 3rem #59e0e4;
-  animation: shine 2s forwards, flicker 2s infinite;
-}
-
-@keyframes blink {
-  0%,
-  22%,
-  36%,
-  75% {
-    color: #ffe6ff;
-    text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem #ff65bd,
-      -0.2rem 0.1rem 1rem #51e8ee, 0.2rem 0.1rem 1rem #aeedf7,
-      0 -0.5rem 2rem #5fd3ed, 0 0.5rem 3rem #acd4f8;
+  .bg-container {
+    justify-content: flex-start;
+    padding: 30px 16px;
+    gap: 20px;
   }
-  28%,
-  33% {
-    color: #c4dce9;
-    text-shadow: none;
+
+  .sign {
+    font-size: clamp(28px, 8vw, 36px);
+    letter-spacing: 4px;
+    margin: 16px 0;
   }
-  82%,
-  97% {
-    color: #cfd9e3;
-    text-shadow: none;
+
+  .play {
+    width: auto;
+    max-width: 180px; /* smaller */
+    padding: 8px 0;
+    margin: 0 auto;
+  }
+
+  .character-sprite {
+    width: 64px;
+    height: 64px;
+  }
+
+  .speech-bubble {
+    font-size: 11px;
+  }
+
+  .social-icons {
+    gap: 8px;
   }
 }
 
-.flicker {
-  animation: shine 2s forwards, blink 3s 2s infinite;
-}
+@media (max-width: 480px) {
 
-.fast-flicker {
-  animation: shine 2s forwards, blink 10s 1s infinite;
-}
-
-@keyframes shine {
-  0% {
-    color: #6b1839;
-    text-shadow: none;
-  }
-  100% {
-    color: #ffe6ff;
-    text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem #ff65bd,
-      -0.2rem 0.1rem 1rem #ff65bd, 0.2rem 0.1rem 1rem #ff65bd,
-      0 -0.5rem 2rem #ff2483, 0 0.5rem 3rem #ff2483;
-  }
-}
-
-@keyframes flicker {
-  from {
-    opacity: 1;
+  .sign {
+    font-size: 24px;
+    letter-spacing: 3px;
   }
 
-  4% {
-    opacity: 0.9;
+  .play {
+    max-width: 160px;
+    padding: 6px 0;
+    margin: 0 auto;
   }
 
-  6% {
-    opacity: 0.85;
+  .character-sprite {
+    width: 56px;
+    height: 56px;
   }
 
-  8% {
-    opacity: 0.95;
+  .speech-bubble {
+    font-size: 10px;
   }
 
-  10% {
-    opacity: 0.9;
-  }
-
-  11% {
-    opacity: 0.922;
-  }
-
-  12% {
-    opacity: 0.9;
-  }
-
-  14% {
-    opacity: 0.95;
-  }
-
-  16% {
-    opacity: 0.98;
-  }
-
-  17% {
-    opacity: 0.9;
-  }
-
-  19% {
-    opacity: 0.93;
-  }
-
-  20% {
-    opacity: 0.99;
-  }
-
-  24% {
-    opacity: 1;
-  }
-
-  26% {
-    opacity: 0.94;
-  }
-
-  28% {
-    opacity: 0.98;
-  }
-
-  37% {
-    opacity: 0.93;
-  }
-
-  38% {
-    opacity: 0.5;
-  }
-
-  39% {
-    opacity: 0.96;
-  }
-
-  42% {
-    opacity: 1;
-  }
-
-  44% {
-    opacity: 0.97;
-  }
-
-  46% {
-    opacity: 0.94;
-  }
-
-  56% {
-    opacity: 0.9;
-  }
-
-  58% {
-    opacity: 0.9;
-  }
-
-  60% {
-    opacity: 0.99;
-  }
-
-  68% {
-    opacity: 1;
-  }
-
-  70% {
-    opacity: 0.9;
-  }
-
-  72% {
-    opacity: 0.95;
-  }
-
-  93% {
-    opacity: 0.93;
-  }
-
-  95% {
-    opacity: 0.95;
-  }
-
-  97% {
-    opacity: 0.93;
-  }
-
-  to {
-    opacity: 1;
+  .footer {
+    font-size: 11px;
   }
 }
 
-
+/* ==============================
+   MOBILE SAFETY (iOS / ANDROID)
+============================= */
+@supports (-webkit-touch-callout: none) {
+  .home-bg {
+    min-height: 100svh;
+  }
+}

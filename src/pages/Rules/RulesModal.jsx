@@ -1,4 +1,4 @@
-import React from "react";
+/*import React from "react";
 import { motion } from "framer-motion"; // Import Framer Motion for animations
 import "./RulesModal.css";
 
@@ -43,6 +43,85 @@ const RulesModal = ({ isOpen, onClose }) => {
         <motion.button
           onClick={onClose}
           className="mt-4 bg-pink-900 text-gray-900 font-pixel px-4 py-2 rounded-lg hover:bg-pink-600 glow"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          Close
+        </motion.button>
+      </motion.div>
+    </div>
+  );
+};
+
+export default RulesModal;
+
+
+*/
+
+
+
+
+import React from "react";
+import { motion } from "framer-motion"; // Import Framer Motion for animations
+import "./RulesModal.css";
+
+// Rules data to be shared
+export const rulesData = [
+  "Answering each question will award you 10 points",
+  "With every question answered, you earn coins.",
+  "Coins can be redeemed against Power Ups in the Shop section",
+  "Each question's hint will be provided after a specific time displayed in the timer",
+  "No negative scoring for wrong answers. This means you can try any question for an unlimited number of times",
+];
+
+const RulesModal = ({ isOpen, onClose }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 rules-backdrop flex justify-center items-center z-50">
+      {/* Floating stars, shooting stars and soft galaxies */}
+      <div className="rules-stars">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div className="rules-shooting-stars">
+        <span></span>
+        <span></span>
+      </div>
+      <div className="rules-galaxies"></div>
+      <motion.div
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0, opacity: 0 }}
+        transition={{ duration: 0.5, type: "spring" }}
+        className="rules-modal"
+      >
+        <h2 className="rules-title font-pixel text-2xl mb-4 glow">
+          Game Rules
+        </h2>
+        <ul className="rules-list text-1xl space-y-4 font-vt323">
+          {rulesData.map((rule, index) => (
+            <motion.li
+              key={index}
+              initial={{ x: -100, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: index * 0.2, duration: 0.5 }}
+              className="rules-item flex items-start space-x-2 text-start"
+            >
+              <span className="rules-index font-bold">{index + 1}.</span>
+              <span className="rules-text">{rule}</span>
+            </motion.li>
+          ))}
+        </ul>
+        <motion.button
+          onClick={onClose}
+          className="rules-close-btn mt-4 font-pixel px-4 py-2 rounded-lg glow"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
         >

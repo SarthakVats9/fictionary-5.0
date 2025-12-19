@@ -1,139 +1,264 @@
+/* ==============================
+   FONTS
+============================== */
 @font-face {
-  font-family: 'myFont';
-  src: url(/assets/alagard.ttf); 
-}
-body{
-  overflow: auto;
-}
-.leaderboardHeader {
- position: relative;
- color: #00FFCC; 
- font-family: myFont;
- font-size: clamp(25px, 6vw, 48px); 
- font-weight: 600;
- text-align: center;
- margin-bottom: 1.5rem;
- animation: flicker 6s infinite, forward-glitch 3s linear infinite;
- letter-spacing: 2px;
- 
+  font-family: 'Technopath';
+  src: url('/assets/Technopath.otf') format('opentype');
 }
 
-.leaderboardHeader::before,
-.leaderboardHeader::after {
- content: "Leaderboard";
- position: absolute;
- top: 0;
- left: 0;
- width: 100%;
- height: 100%;
- background: transparent;
- overflow: hidden;
- z-index: -1;
+@font-face {
+  font-family: 'Cascadia Code';
+  src: url('/assets/CascadiaCode.ttf') format('truetype');
 }
 
-.leaderboardHeader::before {
- left: -2px;
- color: #FF00FF; /* Neon pink */
- text-shadow: -3px 0 #FF00FF, 0 0 10px #FF00FF;
- clip: rect(2px, 900px, 40px, 0);
- animation: glitch-animation 2s infinite;
-}
-
-.leaderboardHeader::after {
- left: 2px;
- color: #00FFFF; /* Neon cyan */
-
- clip: rect(5px, 9999px, 60px, 0);
- animation: glitch-animation 4s infinite reverse;
-}
-
-/* Keyframe Animations */
-@keyframes flicker {
- 0%, 18%, 22%, 25%, 53%, 57%, 100% {
-   opacity: 1;
- }
- 20%, 24%, 55% {
-   opacity: 0.6;
- }
-}
-
-@keyframes forward-glitch {
- 0%, 50% {
-   transform: translateX(0);
- }
- 100% {
-   transform: translateX(3px);
- }
-}
-
-@keyframes glitch-animation {
- 0% {
-   clip: rect(10px, 900px, 0, 0);
-   transform: translate(0px, 0px);
- }
- 20% {
-   clip: rect(30px, 900px, 40px, 0);
-   transform: translate(6px, 3px) skewX(2deg);
- }
- 30% {
-   clip: rect(15px, 9999px, 50px, 0);
-   transform: translate(-5px, 0px) skewX(-2deg);
- }
- 50% {
-   clip: rect(25px, 9999px, 30px, 0);
-   transform: translate(0px, 2px) skewX(-1deg);
- }
- 60% {
-   clip: rect(10px, 900px, 15px, 0);
-   transform: translate(-5px, -3px) skewX(-2deg);
- }
- 80% {
-   clip: rect(5px, 900px, 25px, 0);
-   transform: translate(-6px, 4px) skewX(-1deg);
- }
- 90% {
-   clip: rect(15px, 9999px, 40px, 0);
-   transform: translate(3px, -5px) skewX(2deg);
- }
- 100% {
-   clip: rect(0, 9999px, 5px, 0);
-   transform: translate(0px, 0px);
- }
-}
-
-.leaderboardItems {
-  min-height: calc(60vh - 120px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 20px;
-  min-height: calc(100vh - 144px);
-  z-index: 1;
-  position: relative;
- 
-}
-.leaderboard-container {
-  height: 100vh;
-  overflow-y: auto; /* Enable scrolling for the leaderboard items */
+/* ==============================
+   GLOBAL RESET
+============================== */
+* {
+  box-sizing: border-box;
+  max-width: 100%;
 }
 
 body {
-  background-size: cover;
-  color: #fff;
-  background-attachment: fixed;
-  font-family: "space", cursive;
-  font-optical-sizing: auto;
-  font-weight: 200;
-  font-style: normal;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Cascadia Code', monospace;
+  background: black;
+  overflow-x: hidden;
+  color: #00ff66;
 }
 
+/* ==============================
+   MATRIX BACKGROUND
+============================== */
+.matrix-bg {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background: black;
+  overflow: hidden;
+}
 
-@media (max-width: 800px) {
-  .leaderboardHeader{
-    font-size: 1.2 vw;
-    margin-bottom: 40px;
+.matrix-bg::before,
+.matrix-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 255, 102, 0.08) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(0, 255, 102, 0.06) 2px, transparent 2px);
+  background-size: 28px 28px;
+  animation: matrixScroll 200s linear infinite;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.1;
+}
+
+.matrix-bg::after {
+  background-size: 42px 42px;
+  animation-duration: 300s;
+  opacity: 0.075;
+  filter: blur(0.5px);
+}
+
+@keyframes matrixScroll {
+  from { background-position: 0 0; }
+  to { background-position: 0 140%; }
+}
+
+/* ==============================
+   LEADERBOARD CONTAINER
+============================== */
+.leaderboard-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 60px 0;
+  overflow-y: auto;
+}
+
+/* ==============================
+   LEADERBOARD PANEL
+============================== */
+.leaderboardItems {
+  background: rgba(0, 12, 6, 0.96);
+  width: 90%;
+  max-width: 900px;
+  padding: 24px 32px;
+  border-radius: 10px;
+  border: 3px solid #00ff66;
+  box-shadow: 0 0 10px #00ff66, 0 0 25px rgba(0, 255, 102, 0.4);
+  display: flex;
+  flex-direction: column;
+
+  /* scrolling without visible scrollbar */
+  max-height: 75vh;
+  overflow-y: scroll;
+}
+
+/* Hide scrollbar but keep scroll */
+.leaderboardItems::-webkit-scrollbar {
+  width: 0;
+}
+.leaderboardItems {
+  scrollbar-width: none;
+}
+
+/* ==============================
+   LEADERBOARD HEADER
+============================== */
+.leaderboardHeader {
+  font-family: 'Technopath', sans-serif;
+  font-size: clamp(30px, 6vw, 48px);
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #00ff66;
+  letter-spacing: 2px;
+}
+
+/* ==============================
+   INDIVIDUAL SCORE BOX
+============================== */
+.score {
+  background: rgba(0, 20, 8, 0.9);
+  border: 2px solid #00ff66;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  /* uniform height */
+  min-height: 90px;
+
+  color: #00ff66;
+  font-family: 'Cascadia Code', monospace;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.score:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 15px #00ff66, 0 0 40px rgba(0, 255, 102, 0.5);
+}
+
+/* ==============================
+   PROFILE PICTURE
+============================== */
+.score img.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #00ff66;
+  margin-right: 12px;
+}
+
+/* ==============================
+   NAME AND RANK
+============================== */
+.score > .rank,
+.score > .name {
+  flex: 2;
+  text-align: left;
+  padding-left: 8px;
+}
+
+/* Name size equalized */
+.score > .name {
+  font-size: 22px;
+  letter-spacing: 1px;
+}
+
+/* ==============================
+   POINTS BOX
+============================== */
+.score > .score-value {
+  flex: 1;
+  text-align: center;
+  background: rgba(0, 255, 102, 0.12);
+  border: 2px solid #00ff66;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-weight: bold;
+}
+
+/* ==============================
+   REMOVE GREEN BOX FOR TOP 3 SCORES
+============================== */
+.first-place .score-value,
+.second-place .score-value,
+.third-place .score-value {
+  border: none !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+/* ==============================
+   TOP 3 HIGHLIGHT
+============================== */
+.first-place {
+  border-color: #ffd700;
+  box-shadow: 0 0 12px #ffd700;
+}
+
+.second-place {
+  border-color: #c0c0c0;
+  box-shadow: 0 0 12px #c0c0c0;
+}
+
+.third-place {
+  border-color: #cd7f32;
+  box-shadow: 0 0 12px #cd7f32;
+}
+
+/* ==============================
+   LOADER
+============================== */
+.loader {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+@media (max-width: 768px) {
+  .leaderboardItems {
+    width: 95%;
+    padding: 20px;
   }
 
+  .leaderboardHeader {
+    font-size: clamp(20px, 8vw, 36px);
+  }
 
+  .score {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    min-height: 120px;
+  }
+
+  .score > .rank,
+  .score > .name,
+  .score > .score-value {
+    text-align: center;
+    flex: none;
+    width: 100%;
+  }
+
+  .score img.avatar {
+    margin-right: 0;
+  }
 }
-

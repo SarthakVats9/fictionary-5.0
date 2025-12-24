@@ -1,112 +1,138 @@
 /* ==============================
+   🔒 FIX: DEBSOC LOGO SHRINKING
+============================== */
+
+/* Lock all social icons to same size */
+.social-center img,
+.social-center svg {
+  width: 42px !important;
+  height: 42px !important;
+  min-width: 42px !important;
+  min-height: 42px !important;
+  max-width: 42px !important;
+  max-height: 42px !important;
+}
+
+/* Prevent SVG from inheriting font-size */
+.social-center svg {
+  font-size: 42px !important;
+}
+
+/* Kill scale / transform inheritance */
+.social-center * {
+  transform: none !important;
+}
+
+/* Mobile tuning */
+@media (max-width: 480px) {
+  .social-center img,
+  .social-center svg {
+    width: 36px !important;
+    height: 36px !important;
+  }
+}
+/* ==============================
    FONTS
-============================= */
+============================== */
 @font-face {
-  font-family: 'Technopath';
-  src: url('/assets/Technopath.otf') format('opentype');
+  font-family: "Technopath";
+  src: url("/assets/Technopath.otf") format("opentype");
 }
 
 @font-face {
-  font-family: 'OrbitronSoft';
-  src: url('/assets/Orbitron-Regular.ttf');
+  font-family: "OrbitronSoft";
+  src: url("/assets/Orbitron-Regular.ttf");
 }
 
 /* ==============================
-   GLOBAL RESET + SAFETY
-============================= */
-html, body {
-  width: 100%;
-  min-height: 100%;
+   RESET
+============================== */
+html,
+body {
   margin: 0;
   padding: 0;
-
-  font-family: 'OrbitronSoft', sans-serif;
+  width: 100%;
+  min-height: 100%;
+  font-family: "OrbitronSoft", sans-serif;
   background: black;
   overflow-x: hidden;
 }
 
-*, *::before, *::after {
+* {
   box-sizing: border-box;
 }
 
 /* ==============================
-   BACKGROUND IMAGE
-============================= */
+   BACKGROUND
+============================== */
 .home-bg {
   position: relative;
   width: 100%;
-  min-height: 100vh;
-
-  background-image: url('/assets/bg.jpg');
+  min-height: 100svh;
+  background-position: center;
   background-repeat: no-repeat;
-  background-position: center center;
   background-size: cover;
-
   overflow: hidden;
 }
 
 /* ==============================
-   FOREGROUND CONTAINER
-============================= */
+   FIREFLIES
+============================== */
+.fireflies-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ==============================
+   LAYOUT (BASE)
+============================== */
 .bg-container {
   position: relative;
   z-index: 2;
-
-  min-height: 100vh;
-  width: 100%;
-
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between; /* spread items vertically */
-  padding: 40px 16px;
+  justify-content: space-between;
+  padding: 48px 16px env(safe-area-inset-bottom);
+}
+
+.home-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  text-align: center;
+  width: 100%;
 }
 
 /* ==============================
    TITLE
-============================= */
+============================== */
 .sign {
-  font-family: 'Technopath';
+  font-family: "Technopath";
   letter-spacing: 6px;
   color: #eaffff;
-  text-align: center;
-  margin: 20px 0;
   font-size: clamp(32px, 10vw, 48px);
-
-  text-shadow:
-    0 0 10px rgba(0, 255, 255, 0.6),
-    0 0 20px rgba(0, 255, 255, 0.4);
-
-  transition: transform 0.3s ease, text-shadow 0.3s ease;
-}
-
-.sign:hover {
-  transform: scale(1.04);
-  text-shadow:
-    0 0 14px #00ffff,
-    0 0 36px #00ffff,
-    0 0 70px rgba(0, 255, 255, 0.9);
+  text-shadow: 0 0 12px rgba(0, 255, 255, 0.6);
 }
 
 /* ==============================
-   SIGN IN / PLAY BUTTON
-============================= */
+   BUTTON
+============================== */
 .play {
-  font-family: 'Technopath';
-  padding: 10px 28px;  /* reduced size */
+  font-family: "Technopath";
+  padding: 10px 28px;
   border: 2px solid #00ffee;
   background: rgba(0, 40, 40, 0.85);
   color: #00ffee;
   border-radius: 6px;
   letter-spacing: 3px;
-
-  box-shadow: 0 0 18px rgba(0, 255, 255, 0.6);
-
   cursor: pointer;
+  box-shadow: 0 0 18px rgba(0, 255, 255, 0.6);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  text-align: center;
-  display: inline-block;
-  margin: 0 auto;
 }
 
 .play:hover {
@@ -115,19 +141,8 @@ html, body {
 }
 
 /* ==============================
-   SOCIAL ICONS
-============================= */
-.social-icons {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin: 16px 0;
-}
-
-/* ==============================
-   CHARACTER + CTA
-============================= */
+   CHARACTER
+============================== */
 .character-container {
   display: flex;
   flex-direction: column;
@@ -142,79 +157,58 @@ html, body {
 }
 
 .speech-bubble {
-  margin-top: 6px;
   padding: 6px 10px;
-
-  background: rgba(0, 0, 0, 0.85);
   border: 2px solid #00ffee;
   border-radius: 6px;
-
+  background: rgba(0, 0, 0, 0.85);
   color: #00ffee;
   font-size: 12px;
-  text-align: center;
-
-  box-shadow: 0 0 12px #00ffee;
 }
 
 /* ==============================
    FOOTER
-============================= */
+============================== */
 .footer {
   opacity: 0.8;
   text-align: center;
-  margin-top: 20px;
   font-size: 12px;
+  margin-top: 40px;
 }
 
 /* ==============================
-   RESPONSIVE — TABLET & MOBILE
-============================= */
+   RESPONSIVE (NORMAL)
+============================== */
 @media (max-width: 768px) {
-
   .bg-container {
     justify-content: flex-start;
-    padding: 30px 16px;
-    gap: 20px;
+    padding-top: 80px;
+    padding-bottom: 100px;
+    gap: 36px;
+  }
+
+  .home-content {
+    gap: 22px;
   }
 
   .sign {
-    font-size: clamp(28px, 8vw, 36px);
-    letter-spacing: 4px;
-    margin: 16px 0;
-  }
-
-  .play {
-    width: auto;
-    max-width: 180px; /* smaller */
-    padding: 8px 0;
-    margin: 0 auto;
+    font-size: clamp(26px, 8vw, 36px);
   }
 
   .character-sprite {
     width: 64px;
     height: 64px;
   }
-
-  .speech-bubble {
-    font-size: 11px;
-  }
-
-  .social-icons {
-    gap: 8px;
-  }
 }
 
 @media (max-width: 480px) {
-
-  .sign {
-    font-size: 24px;
-    letter-spacing: 3px;
+  .bg-container {
+    padding-top: 64px;
+    padding-bottom: 96px;
+    gap: 28px;
   }
 
-  .play {
-    max-width: 160px;
-    padding: 6px 0;
-    margin: 0 auto;
+  .home-content {
+    gap: 18px;
   }
 
   .character-sprite {
@@ -225,402 +219,117 @@ html, body {
   .speech-bubble {
     font-size: 10px;
   }
+}
 
-  .footer {
-    font-size: 11px;
+/* =================================================
+   TAILWIND OVERRIDE — HOME ONLY (FINAL AUTHORITY)
+================================================= */
+
+/* Kill Tailwind bleed */
+.home-bg *,
+.home-bg *::before,
+.home-bg *::after {
+  box-sizing: border-box;
+}
+
+/* Force container alignment */
+.home-bg .bg-container {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+}
+
+/* HARD lock centering at ALL widths */
+.home-bg .home-content {
+  width: 100% !important;
+  max-width: 420px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  align-items: center !important;
+  text-align: center !important;
+}
+
+@media (max-width: 768px) {
+  .home-bg .home-content {
+    max-width: 360px !important;
   }
 }
 
+@media (max-width: 480px) {
+  .home-bg .home-content {
+    max-width: 320px !important;
+  }
+}
 /* ==============================
-   MOBILE SAFETY (iOS / ANDROID)
-============================= */
-@supports (-webkit-touch-callout: none) {
-  .home-bg {
-    min-height: 100svh;
-  }
-}
-body{
-  overflow-y: hidden;
-}
-.glowing {
-  box-shadow: 0 0 20px #3b96f0, 0 0 40px #74d4f0, 0 0 60px #daedef;
-}
+   SOCIAL ICONS — TRUE CENTER FIX
+============================== */
 
-.glowing-controls {
-  box-shadow: 0 0 20px #00ffea, 0 0 40px #00ffea, 0 0 60px #00ffea;
-}
-
-.character-sprite {
-  animation: character-idle 2s infinite;
-}
-
-.overlay-background {
-  position: absolute;
-  top: 0;
-  left: 0;
+.social-center {
   width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
-  z-index: 1;
-}
-
-.play_now {
-  text-align: center;
-  margin-top: 1.75rem;
-}
-
-.retro-btn {
-  display: inline-block;
-  padding: 10px 20px;
-  font-family: 'Press Start 2P', sans-serif; /* Use a pixel font */
-  font-size: 16px;
-  color: #00ffcc;
-  text-decoration: none;
-  border: 2px solid #00ffcc;
-  background: linear-gradient(145deg, #000000, #0d0d0d);
-  box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc inset;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.retro-btn:hover {
-  color: #ff0099;
-  border-color: #ff0099;
-  box-shadow: 0 0 15px #ff0099, 0 0 25px #ff0099 inset;
-  transform: scale(1.1);
-}
-
-.time-up {
-  text-align: center;
-  font-size: 1.5em;
-  color: #ffcc33;
-}
-
-.arcade-text {
-  font-family: 'Press Start 2P', sans-serif;
-  text-transform: uppercase;
-  text-shadow: 2px 2px 0px #ff477e, -2px -2px 0px #33ccff;
-}
-
-.ComSoon {
-  text-align: center;
-  font-size: 2em;
-  color: #33ccff;
-  animation: blink 1s step-start infinite;
-}
-
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
-}
-
-.landing-sign-in {
-  font-family: 'Press Start 2P', sans-serif;
-  color: #ffffff;
-  background: #1a1a1a;
-  border: 2px solid #ff477e;
-  padding: 10px 20px;
-  cursor: pointer;
-  text-shadow: 2px 2px 0px #ffcc33;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-.landing-sign-in:hover {
-  color: #ff477e;
-  background: #ffcc33;
-  box-shadow: 0px 0px 10px 3px #ff477e;
-}
-
-@keyframes character-idle {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-5px);
-  }
-}
-@font-face {
-  font-family: 'myFont';
-  src: url(/assets/operius-mono.ttf); 
-}
-.font-operius{
-  font-family: myFont;
-}
-
-
-@keyframes slowPulse {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.1);
-    opacity: 0.7;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-
-
-.speech-bubble {
-  position: absolute;
-  top: -50px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 10px 15px;
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  font-family: "PixelFont", sans-serif;
-  font-size: 14px;
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
-}
-
-/* Neon Buttons */
-.touch-controls {
   display: flex;
-  justify-content: space-around;
-  width: 60%;
-  margin: 20px auto;
-  position: absolute;
-  bottom: 10%;
+  justify-content: center;
+  align-items: center;
 }
 
-.control-button {
-  width: 60px;
-  height: 60px;
-  border: none;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: white;
-  font-size: 24px;
-  font-family: "PixelFont", sans-serif;
+/* If icons are flex/inline-flex inside footer */
+.social-center > * {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* HARD OVERRIDE FOR ICON ROW */
+.social-center .social-icons,
+.social-center ul,
+.social-center nav,
+.social-center div {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 14px;
+}
+
+/* Kill Tailwind offset/margins */
+.social-center * {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+/* ==============================
+   🔒 FINAL HARD CENTER LOCK
+   (TAILWIND-PROOF)
+============================== */
+
+.home-center {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.7);
-  transition: background-color 0.2s, box-shadow 0.5s;
+
+  text-align: center;
+  pointer-events: auto;
 }
 
-.control-button:hover {
-  background-color: rgba(255, 255, 255, 0.3);
+/* Vertical rhythm */
+.home-center > * {
+  margin-bottom: 20px;
 }
 
-.play-text {
-  font-size: 2rem; 
-  font-weight: 500; 
-  text-shadow: 
-    0 0 5px #d585ed, 
-    0 0 10px #d586eb, 
-    0 0 20px #e990eb; 
-  color: #00ffff; 
-  transition: text-shadow 0.3s ease, color 0.3s ease;
+/* Social icons spacing */
+.home-center .social-center {
+  margin-top: 28px;
 }
 
-.glowing {
-  box-shadow: 
-    0 0 15px #aaebeb, 
-    0 0 30px #95eff4, 
-    0 0 45px #8dd3ea; 
-  border: 2px solid #ff007f; 
-}
-
-.neonEffect:hover .play-text {
-  text-shadow: 
-    0 0 10px #0000ff, 
-    0 0 20px #1246b5, 
-    0 0 30px #ff007f;
-  color: #90e2eb;
-}
-
-
-.sign {
-
-  width: 50%;
-  height: 50%;
- 
-  transform: translate(-50%, -50%);
-  letter-spacing: 2;
-  display: inline-block;
-
-  text-transform: uppercase;
-  color: #ffe6ff;
-  text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem #ff65bd,
-    -0.2rem 0.1rem 1rem #a6edf9, 0.2rem 0.1rem 1rem #99dff7,
-    0 -0.5rem 2rem #4daef8, 0 0.5rem 3rem #59e0e4;
-  animation: shine 2s forwards, flicker 2s infinite;
-}
-
-@keyframes blink {
-  0%,
-  22%,
-  36%,
-  75% {
-    color: #ffe6ff;
-    text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem #ff65bd,
-      -0.2rem 0.1rem 1rem #51e8ee, 0.2rem 0.1rem 1rem #aeedf7,
-      0 -0.5rem 2rem #5fd3ed, 0 0.5rem 3rem #acd4f8;
+/* Mobile tuning */
+@media (max-width: 768px) {
+  .home-center {
+    padding: 0 16px;
   }
-  28%,
-  33% {
-    color: #c4dce9;
-    text-shadow: none;
-  }
-  82%,
-  97% {
-    color: #cfd9e3;
-    text-shadow: none;
+
+  .home-center > * {
+    margin-bottom: 16px;
   }
 }
-
-.flicker {
-  animation: shine 2s forwards, blink 3s 2s infinite;
-}
-
-.fast-flicker {
-  animation: shine 2s forwards, blink 10s 1s infinite;
-}
-
-@keyframes shine {
-  0% {
-    color: #6b1839;
-    text-shadow: none;
-  }
-  100% {
-    color: #ffe6ff;
-    text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem #ff65bd,
-      -0.2rem 0.1rem 1rem #ff65bd, 0.2rem 0.1rem 1rem #ff65bd,
-      0 -0.5rem 2rem #ff2483, 0 0.5rem 3rem #ff2483;
-  }
-}
-
-@keyframes flicker {
-  from {
-    opacity: 1;
-  }
-
-  4% {
-    opacity: 0.9;
-  }
-
-  6% {
-    opacity: 0.85;
-  }
-
-  8% {
-    opacity: 0.95;
-  }
-
-  10% {
-    opacity: 0.9;
-  }
-
-  11% {
-    opacity: 0.922;
-  }
-
-  12% {
-    opacity: 0.9;
-  }
-
-  14% {
-    opacity: 0.95;
-  }
-
-  16% {
-    opacity: 0.98;
-  }
-
-  17% {
-    opacity: 0.9;
-  }
-
-  19% {
-    opacity: 0.93;
-  }
-
-  20% {
-    opacity: 0.99;
-  }
-
-  24% {
-    opacity: 1;
-  }
-
-  26% {
-    opacity: 0.94;
-  }
-
-  28% {
-    opacity: 0.98;
-  }
-
-  37% {
-    opacity: 0.93;
-  }
-
-  38% {
-    opacity: 0.5;
-  }
-
-  39% {
-    opacity: 0.96;
-  }
-
-  42% {
-    opacity: 1;
-  }
-
-  44% {
-    opacity: 0.97;
-  }
-
-  46% {
-    opacity: 0.94;
-  }
-
-  56% {
-    opacity: 0.9;
-  }
-
-  58% {
-    opacity: 0.9;
-  }
-
-  60% {
-    opacity: 0.99;
-  }
-
-  68% {
-    opacity: 1;
-  }
-
-  70% {
-    opacity: 0.9;
-  }
-
-  72% {
-    opacity: 0.95;
-  }
-
-  93% {
-    opacity: 0.93;
-  }
-
-  95% {
-    opacity: 0.95;
-  }
-
-  97% {
-    opacity: 0.93;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-

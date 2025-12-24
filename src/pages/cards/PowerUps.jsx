@@ -93,11 +93,11 @@ const PowerUps = () => {
       </div>
     );
   } else if (cards.length > 0) {
-  
     cardItems = cards.map((card, index) => (
       <PowerUpsViews
        key={index} 
        card={card} 
+       //index={index}
        refreshUpdateState={refreshUpdateState}
        onCardRedeemed={showCardRedeemedAlert} 
        />
@@ -105,7 +105,7 @@ const PowerUps = () => {
   } else {
     
     cardItems = (
-      <div className="text-center text-gray-400 font-expo text-xl mt-8">
+      <div className="text-center text-gray-400 font-gen text-xl mt-8">
         You have no Power Cards right now. Check back later!
       </div>
     );
@@ -114,7 +114,7 @@ const PowerUps = () => {
 
   return (
     <>
-    
+  
     <div className="powerups-bg min-h-screen flex flex-col items-center p-8 ">
       <h1 className="powerups-available">
         PowerUps Available
@@ -123,7 +123,7 @@ const PowerUps = () => {
         {cardItems}
       </div>
     </div>
-    <ToastContainer />
+
     </>
   );
 };

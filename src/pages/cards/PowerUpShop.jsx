@@ -4,6 +4,9 @@ import endpoints from "../../utils/APIendpoints";
 import { useNavigate } from "react-router-dom";
 import PowerUpShopView from "./PowerUpShopView";
 import "./PowerUpShop.css"; 
+import FlowerDisplay from "/assets/FlowerDisplay.ttf";
+import bgps9 from "/assets/bgps9.jpg";
+import powerupshop from "/assets/powerupshop.png";
 
 const PowerUpShop = () => {
   const [cards, setCards] = useState({ cardList: [], loaded: true });
@@ -71,26 +74,71 @@ const PowerUpShop = () => {
     }
   }, [context.token, updateState, gameLive]);
 
-  const cardItems =
-    cards.cardList.length !== 0 ? (
-      cards.cardList.map((card, index) => (
-        <PowerUpShopView  card={card} refreshUpdateState={refreshUpdateState} />
-      ))
-    ) : (
-      <p className="text-white text-lg font-pixel text-center">No Power-Ups Available</p>
-    );
-
-  return (
-    <div className="shop-container bg-gradient-to-b from-blue-950 via-purple-950 to-black min-h-screen flex flex-col items-center p-8">
-      <h1 className="xl:text-4xl sm:text-2xl md:text-3xl lg:text-3xl text-neon-pink flicker mb-4 font-arcade text-neon-yellow">Power-Up Shop</h1>
-      <h2 className="xl:text-3xl sm:text-2xl md:text-3xl lg:text-3xl text-neon-green mb-8 font-pixel">
-        Coins: <span className="text-neon-yellow">{userCoins}</span>
-      </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl justify-center items-center">
-        {cardItems}
+ return (
+  <div className="shop-page-wrapper">
+    <div className="shop-page">
+      
+      {/* FIXED BACKGROUND */}
+      <div className="shop-bg">
+        <img
+          src={bgps9}
+          alt=""
+          className="w-full h-full object-cover object-top"
+          draggable={false}
+        />
       </div>
+
+      {/* SCROLLABLE CONTENT */}
+      <div className="shop-content">
+        <h1 className="xl:text-15xl sm:text-6xl md:text-8xl lg:text-13xl
+                       multiverse-title metallic-text
+                       mt-7 mb-5 text-center">
+          POWER UP SHOP
+        </h1>
+
+        <h2 className="xl:text-3xl sm:text-2xl md:text-3xl lg:text-3xl
+                       flicker font-coins -mt-3 text-center">
+          Coins: <span>{userCoins}</span>
+        </h2>
+
+        <div className="cards-grid">
+          {cards.cardList.map((card, index) => (
+            <PowerUpShopView
+              key={index}
+              card={card}
+              refreshUpdateState={refreshUpdateState}
+            />
+          ))}
+        </div>
+      </div>
+
     </div>
-  );
-};
+  </div>
+);
+}
 
 export default PowerUpShop;
+
+/*        <div
+          className="bg-dark-blue overlayPower"
+           style={{
+            backgroundImage: `url(${bgps8})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center top",
+            backgroundRepeat: "no-repeat"
+          }}
+
+              <div className="bg-black/50 rounded-md flex justify-center mx-auto">
+  <h1 className="xl:text-15xl sm:text-6xl md:text-8xl lg:text-13xl multiverse-title mt-7 mb-5 font-arcade text-center">
+    Power-Up Shop
+  </h1>
+</div> 
+
+ <img
+      src={powerupshop}
+      alt=""
+      className="mx-auto block object-contain"
+      draggable={false}
+    />
+
+        >*/

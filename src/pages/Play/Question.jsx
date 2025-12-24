@@ -9,7 +9,6 @@ import endpoints from "../../utils/APIendpoints";
 import { useNavigate } from "react-router-dom";
 import { ColorRing } from "react-loader-spinner";
 
-
 const QuestionTextRenderer = ({ text }) => {
   text = typeof text === "string" ? text : "";
 
@@ -123,7 +122,6 @@ const Question = () => {
 
   const checkAnswer = () => {
     const answer = document.getElementById("answerInput");
-
     fetch(endpoints.ANSWER, {
       method: "POST",
       headers: {

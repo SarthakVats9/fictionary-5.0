@@ -1,33 +1,159 @@
-body{
-  overflow-y: auto;
-}
+/*.overlayPower {
+  overflow-x: hidden;
+  overflow-y:auto;
+  background-size: cover;
+  min-height: 100vh;
+}*/
 .shop-container {
-    background: linear-gradient(to bottom, #000428, #004e92);
+    size:contain;
   }
   
   .font-arcade {
-    font-family: "Press Start 2P", cursive;
+    font-family: "audiowide";
+    font-size: 0.7rem;
+    color:rgb(198, 204, 21);
   }
   
-  
-  
-  .text-neon-pink {
-    color: #ff00e6;
-    text-shadow: 0 0 8px #ff00e6, 0 0 16px #ff00e6, 0 0 24px #ff00e6;
+  .font-coins {
+    font-family: "OneSlice";
+    color: #b3e0e8;
+    text-shadow:
+      0 0 8px #7f00ff,
+      0 0 16px #00eaff;
   }
-  
-  .text-neon-green {
-    color: #0aff99;
-    text-shadow: 0 0 8px #0aff99, 0 0 16px #0aff99, 0 0 24px #0aff99;
+
+  .font-gen {
+    font-family: "Mahaputra";
+    font-size: larger;
   }
-  
-  .text-neon-yellow {
-    color: #fffb00;
-    text-shadow: 0 0 8px #fffb00, 0 0 16px #fffb00, 0 0 24px #fffb00;
+
+  .font-cd1 {
+    font-family: "cd1";
+    font-size: larger;
+  }
+
+  .font-cd2{
+    font-family: "cd2";
+    font-size: medium;
+    color: #ffae00
   }
   
   .flicker {
     animation: flicker 1.5s infinite;
+    transform: scale(1.25)
+  }
+  
+  @font-face {
+    font-family: 'FlowerDisplay';
+    src: url("/assets/FlowerDisplay.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; 
+  }
+
+  @font-face {
+    font-family: 'OneSlice';
+    src: url("/assets/OneSlice.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; 
+  }
+
+  @font-face {
+    font-family: 'Mahaputra';
+    src: url("/assets/Mahaputra.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; 
+  }
+  @font-face {
+    font-family: 'cd1';
+    src: url("/assets/cardhead1.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; 
+  }
+
+   @font-face {
+    font-family: 'cd2';
+    src: url("/assets/card2.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; 
+  }
+
+  
+  @font-face {
+    font-family: 'audiowide';
+    src: url("/assets/audiowide.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; 
+  }
+
+    @font-face {
+    font-family: 'Ebox';
+    src: url("/assets/Ebox.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; 
+  }
+
+
+  @media (max-width: 768px) {
+  .overlayPower {
+    background-size: contain;
+    background-position: top center;
+  }
+}
+
+ /* ---------- ENTRANCE: Multiverse Title ---------- */
+@keyframes multiverseTitle {
+  0% {
+    opacity: 0;
+    transform: scale(0.7) translateY(-20px);
+    filter: blur(10px);
+    text-shadow: none;
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.05) translateY(0);
+    filter: blur(2px);
+    
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+    
+  }
+}
+
+  /* ---------- PERSISTENT: Reality Breathing ---------- */
+  @keyframes multiverseBreath {
+    0% {
+      transform: scale(1);
+     
+    }
+    50% {
+      transform: scale(1.023);
+      /*text-shadow:
+        0 0 12px #06914e,
+        0 0 24px #dbe684,
+        0 0 36px rgba(255, 255, 255, 0.35);*/
+    }
+    100% {
+      transform: scale(1);
+    
+    }
+  }
+
+  /* ---------- COMBINED CLASS ---------- */
+  .multiverse-title {
+    animation:
+      multiverseTitle 1.4s cubic-bezier(0.25, 1, 0.5, 1) both,
+      multiverseBreath 5.5s ease-in-out infinite;
+    animation-delay: 0s, 1.5s; /* persistent starts AFTER entrance */
   }
   
   @keyframes flicker {
@@ -39,17 +165,316 @@ body{
       opacity: 0.85;
     }
   }
+
+
   
   .grid > div {
-    background: rgba(0, 0, 0, 0.8);
-    padding: 16px;
-    border-radius: 8px;
-    box-shadow: 0 0 12px #0aff99, 0 0 24px #0aff99, 0 0 36px #0aff99;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
+  background: transparent;
+  overflow: visible;
+}
+
+.grid > div img {
+  transition: transform 0.25s ease, filter 0.25s ease;
+  /*filter:
+    drop-shadow(0 0 8px #ffd54a)
+    drop-shadow(0 0 16px rgba(255,213,74,0.7));*/
+}
+
+/* Red / Asteroid */
+.glow-yellow {
+  filter:
+    
+    drop-shadow(0 0 5px #eef499)
+    ;
+}
+
+
+/*.grid > div:hover img.glow-red{
+
+  filter:
+    drop-shadow(0 0 8px #ff3b3b)
+    drop-shadow(0 0 8px #ff3b3b)
+    drop-shadow(0 0 8px rgba(255,59,59,0.9));
+}
+
+.grid > div:hover img.glow-green{
+
+  filter:
+    drop-shadow(0 0 8px #00ff9c)
+    drop-shadow(0 0 8px #00ff9c)
+    drop-shadow(0 0 8px rgba(0,255,156,0.9));
+}
+
+.grid > div:hover img.glow-purple{
+ 
+  filter:
+    drop-shadow(0 0 8px #a855f7)
+    drop-shadow(0 0 8px #a855f7)
+    drop-shadow(0 0 8px rgba(168,85,247,0.9));
+}
+
+.grid > div:hover img{
+  transform: scale(1.1);
+}  */
   
-  .grid > div:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 16px #ff00e6, 0 0 32px #ff00e6, 0 0 48px #ff00e6;
+.card-title-overlay {
+  font-family: 'FlowerDisplay', monospace;
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: #fa6d15; /* yellow-400 */
+  text-align: center;
+
+  /* visual polish */
+  text-shadow:
+    0 0 8px rgba(250, 204, 21, 0.8),
+    0 0 16px rgba(250, 204, 21, 0.5);
+
+  /* POSITION CONTROL */
+  transform: translateY(40px); /* 🔑 moves title BELOW center */
+}
+/*
+@keyframes cosmic-float {
+  0%, 100% {
+    transform: translateY(0px);
   }
-  
+  50% {
+    transform: translateY(-10px);
+  }
+}*/
+@keyframes cosmic-float {
+  0%, 100% { --float-y: 0px; transform: translateY(0); }
+  50% { --float-y: -10px; transform: translateY(-10px); }
+}
+
+
+.card-float {
+  animation: cosmic-float 6s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 18px white);
+  }
+  50% {
+    filter: drop-shadow(0 0 28px white);
+  }
+}
+
+.card-glow {
+  animation: glow-pulse 3.5s ease-in-out infinite;
+}
+
+.card-hover {
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-8px) scale(1.03);
+}
+
+/* ===== MULTIVERSE GLITCH TITLE ===== */
+
+@keyframes multiverse-glitch {
+  0%, 92%, 100% {
+    transform: translate(0);
+    opacity: 1;
+  }
+
+  93% {
+    transform: translate(-1px, 0);
+    opacity: 0.9;
+  }
+
+  94% {
+    transform: translate(1px, 0);
+    opacity: 0.85;
+  }
+
+  95% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes glow-breathe {
+  0%, 100% {
+    text-shadow:
+      0 0 6px rgba(255, 230, 150, 0.9),
+      0 0 14px rgba(255, 200, 80, 0.6);
+  }
+  50% {
+    text-shadow:
+      0 0 10px rgba(255, 230, 150, 1),
+      0 0 22px rgba(255, 200, 80, 0.85);
+  }
+}
+
+
+
+.glow {
+  animation: glow-breathe 1s ease-in-out infinite;
+}
+
+.card-title-glitch {
+  position: relative;
+  color: #fde68a; /* warm cosmic yellow */
+  text-align: center;
+  letter-spacing: 0.08em;
+
+  /* animations */
+  animation:
+    multiverse-glitch 0.5s infinite,
+    glow-breathe 1s ease-in-out infinite;
+}
+
+.card-wrapper img {
+  transition: transform 0.35s ease, filter 0.35s ease;
+  will-change: transform, filter;
+}
+
+.card-wrapper:hover img {
+  transform: scale(1.12); /* scales the card */
+  filter: brightness(1.08) drop-shadow(0 0 18px #d7d3c3)
+          drop-shadow(0 0 28px #fde68a); /* initial glow */
+  animation: cosmic-float 6s ease-in-out infinite, glow-pulse 1s ease-in-out infinite;
+}
+
+.shop-page {
+  height: 100vh;          /* fixed height */
+  overflow-y: auto;      /* THIS enables scroll */
+  overflow-x: hidden;
+  position: relative;
+}
+
+
+
+
+.card-info {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  align-content: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+  background: rgba(6, 18, 18, 0.8);
+  border-top: 1px solid rgba(0, 255, 180, 0.35);
+
+  padding: 5px;
+  color: #4ddc0a;
+
+  transform: translateY(100%);
+  opacity: 0;
+
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.card-wrapper:hover .card-info {
+  transform: translateY(-10px);
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .card-info {
+    position: static;         /* no overlap */
+    transform: none ;
+    opacity: 1;
+    pointer-events: auto;
+
+           /* space from card */
+    margin-top: -48px;
+  }
+}
+
+.metallic-text {
+  font-family: 'Ebox';
+  background: linear-gradient(
+    90deg,
+    #989797 0%,
+    #f5f5f5 15%,
+    #9e9e9e 30%,
+    #ffffff 45%,
+    #878787 60%,
+    #eeeeee 75%,
+    #6d6b6b 100%
+  );
+
+  font-size: 4rem;
+  letter-spacing: 1rem;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+   background-size: 200% 100%;
+  animation: shine 4s linear infinite,
+  multiverse-glitch 0.5s infinite,
+  multiverseBreath 5.5s ease-in-out infinite;
+
+  /* metallic depth */
+  text-shadow:
+    0 1px 1px rgba(255,255,255,0.3),
+    0 -1px 1px rgba(0,0,0,0.4);
+}
+
+@keyframes shine {
+  0% { background-position: 50% 100%; }
+  100% { background-position: 300% 50%; }
+}
+
+.powerup-page {
+  min-height: 100vh;
+  background-image: url("/path/to/bgps9.png");
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+
+  /* allows page scroll */
+  overflow-x: hidden;
+}
+
+
+
+/* pushes whole page BELOW navbar */
+.shop-page-wrapper {
+  margin-top: 0.5rem;   /* adjust to navbar height */
+  height: calc(100vh - 0.5rem);
+}
+
+/* page layering */
+.shop-page {
+  position: relative;
+  height: 100%;
+}
+
+/* fixed background */
+.shop-bg {
+  position: fixed;
+  top: 4.5rem;          /* 👈 THIS IS CRITICAL */
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 0.5rem);
+  z-index: 0;
+}
+
+/* scrollable content */
+.shop-content {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  overflow-y: auto;
+  padding-bottom: 4rem;
+}
+
+/* cards */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem 6rem;
+}
+
+
+/* remove .grid > div:hover img to avoid conflicts */

@@ -9,11 +9,11 @@
 /* =========================
    OVERLAY — MATRIX STYLE
 ========================= */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 .rules1 {
   display: flex;
   justify-content: center;
   align-items: center;
-
   position: fixed;
   top: 0;
   left: 0;

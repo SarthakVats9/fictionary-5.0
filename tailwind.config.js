@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        pixel: ['"Press Start 2P"', 'monospace'],
+        pixel: ['"Press Start 2P"', 'monospace', "TechnoPath", 'sans-serif'],
       },
       fontSize: {
         'xs': '12px',

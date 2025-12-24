@@ -119,16 +119,17 @@ const availableCards = cards.filter(
 
 if (isLoading) {
   cardItems = (
-    <div className="text-center text-gray-400 text-xl mt-1">
+    <div className=" mt-8 flex items-center justify-center min-h-[70vh] text-gray-400 text-2xl">
       Loading Power Cards...
     </div>
   );
 } else if (availableCards.length === 0) {
   cardItems = (
     
-    <div className="text-center text-gray-400 text-2xl mt-1 ">
-      No cards available
-    </div>
+    <div className="mt-8 flex items-center justify-center min-h-[70vh] text-gray-400 text-2xl">
+  No cards available
+</div>
+
   );
 } else {
   cardItems = availableCards.map((card, index) => (
@@ -152,9 +153,18 @@ if (isLoading) {
                        mt-7 mb-5 text-center">
         POWERUPS AVAILABLE
       </h1>
-      <div className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-full max-w-5xl cards items-center justify-center card-float">
-        {cardItems}
-      </div>
+      {availableCards.length === 0 || isLoading ? (
+  
+  <div className="flex justify-center w-full -mt-60">
+    {cardItems}
+  </div>
+) : (
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-full max-w-5xl cards items-center justify-center card-float">
+    {cardItems}
+  </div>
+)}
+
+
     </div>
 
     </>

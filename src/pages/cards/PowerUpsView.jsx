@@ -114,11 +114,11 @@ const PowerUpsViews = ({ card, refreshUpdateState, onCardRedeemed }) => {
     />
 
     {/* TITLE OVERLAY */}
-    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+    {/* <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
       <h3 className="card-title-overlay card-title-glitch">
         {ui.title}
       </h3>
-    </div>
+    </div> */}
   </div>
 
   {/* DESCRIPTION */}

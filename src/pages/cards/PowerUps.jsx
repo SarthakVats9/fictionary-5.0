@@ -84,44 +84,87 @@ const PowerUps = () => {
     getUserCoins();
   }, [context.token, updateState]);
 
-  let cardItems;
-  if (isLoading) {
+  // let cardItems;
+  // if (isLoading) {
    
-    cardItems = (
-      <div className="text-center text-gray-400 font-expo text-xl mt-8">
-        Loading Power Cards...
-      </div>
-    );
-  } else if (cards.length > 0) {
-    cardItems = cards.map((card, index) => (
-      <PowerUpsViews
-       key={index} 
-       card={card} 
-       //index={index}
-       refreshUpdateState={refreshUpdateState}
-       onCardRedeemed={showCardRedeemedAlert} 
-       />
-    ));
-  } else {
+  //   cardItems = (
+  //     <div className="text-center text-gray-400 font-expo text-xl mt-8">
+  //       Loading Power Cards...
+  //     </div>
+  //   );
+  // } else if (cards.length > 0) {
+  //   cardItems = cards.map((card, index) => (
+  //     <PowerUpsViews
+  //      key={index} 
+  //      card={card} 
+  //      //index={index}
+  //      refreshUpdateState={refreshUpdateState}
+  //      onCardRedeemed={showCardRedeemedAlert} 
+  //      />
+  //   ));
+  // } else {
     
-    cardItems = (
-      <div className="text-center text-gray-400 font-gen text-xl mt-8">
-        You have no Power Cards right now. Check back later!
-      </div>
-    );
-  }
- 
+  //   cardItems = (
+  //     <div className="text-center text-gray-400 font-gen text-xl mt-8">
+  //       You have no Power Cards right now. Check back later!
+  //     </div>
+  //   );
+  // }
+//  
+let cardItems;
+
+const availableCards = cards.filter(
+  (card) => card.aval_cards && card.aval_cards.includes("1")
+);
+
+if (isLoading) {
+  cardItems = (
+    <div className=" mt-8 flex items-center justify-center min-h-[70vh] text-gray-400 text-2xl">
+      Loading Power Cards...
+    </div>
+  );
+} else if (availableCards.length === 0) {
+  cardItems = (
+    
+    <div className="mt-8 flex items-center justify-center min-h-[70vh] text-gray-400 text-2xl">
+  No cards available
+</div>
+
+  );
+} else {
+  cardItems = availableCards.map((card, index) => (
+    <PowerUpsViews
+      key={index}
+      card={card}
+      refreshUpdateState={refreshUpdateState}
+      onCardRedeemed={showCardRedeemedAlert}
+    />
+  ));
+}
+
+
 
   return (
     <>
   
     <div className="powerups-bg min-h-screen flex flex-col items-center p-8 ">
-      <h1 className="powerups-available">
-        PowerUps Available
+      <h1 className="xl:text-15xl sm:text-6xl md:text-8xl lg:text-13xl
+                       multiverse-title metallic-text
+                       mt-7 mb-5 text-center">
+        POWERUPS AVAILABLE
       </h1>
-      <div className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-full max-w-5xl cards items-center justify-center">
-        {cardItems}
-      </div>
+      {availableCards.length === 0 || isLoading ? (
+  
+  <div className="flex justify-center w-full -mt-60">
+    {cardItems}
+  </div>
+) : (
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-full max-w-5xl cards items-center justify-center card-float">
+    {cardItems}
+  </div>
+)}
+
+
     </div>
 
     </>

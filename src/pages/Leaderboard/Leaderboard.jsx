@@ -49,6 +49,7 @@ const Leaderboard = () => {
         ) : (
           <div className="podium">
 
+            {/* SECOND PLACE */}
             {top3[1] && (
               <div className="podium-card second">
                 <div className="hex-frame">
@@ -60,8 +61,9 @@ const Leaderboard = () => {
               </div>
             )}
 
+            {/* FIRST PLACE */}
             {top3[0] && (
-              <div className="podium-card first spotlight">
+              <div className="podium-card first">
                 <div className="hex-frame glow-pulse">
                   <img src={top3[0].avatar} className="hex-img" />
                 </div>
@@ -72,6 +74,7 @@ const Leaderboard = () => {
               </div>
             )}
 
+            {/* THIRD PLACE */}
             {top3[2] && (
               <div className="podium-card third">
                 <div className="hex-frame">

@@ -1,15 +1,21 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
 .font-vt323 {
-  font-family: 'VT323', monospace;
-  font-size: 25px;
+  font-family: 'Orbitron', sans-serif !important;
+  font-size: 15px;
 }
+
+
 
 /* Backdrop - dark multiversal space */
 .rules-backdrop {
   background: radial-gradient(ellipse at top, rgba(15, 23, 42, 0.95), rgba(0, 0, 0, 0.98));
 }
+
+
+
 
 /* Simple floating stars for rules backdrop */
 .rules-stars {
@@ -57,6 +63,7 @@
     opacity: 0;
   }
 }
+
 
 /* Shooting stars */
 /*.rules-shooting-stars {
@@ -217,13 +224,15 @@
 
 /* Title glow */
 .rules-title {
-  color: #e5e7eb;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  text-shadow:
-    0 0 6px rgba(148, 163, 184, 0.9),
-    0 0 14px rgba(16, 185, 129, 1),
-    0 0 28px rgba(16, 185, 129, 0.9);
+  color: white;
+  letter-spacing: 0.3em;
+  animation: greenTitleFlicker 1.8s steps(1, end) infinite;
+  font-family: 'Orbitron', sans-serif !important;
+  font-size: 25px;
+  font-weight: bold;
+
+
+
 }
 
 .glow {
@@ -235,14 +244,32 @@
 
 /* Rules list */
 .rules-list {
-  color: #d1d5db;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 22px;
 }
 
+
 .rules-item {
-  position: relative;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.75rem;
-  background: radial-gradient(circle at left, rgba(15, 23, 42, 0.9), transparent 70%);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+
+  padding: 14px 16px;
+  border-radius: 14px;
+
+  background: linear-gradient(
+    180deg,
+    rgba(0, 255, 102, 0.06),
+    rgba(0, 0, 0, 0.9)
+  );
+
+  border: 1px solid rgba(0, 255, 102, 0.25);
+
+  box-shadow:
+    inset 0 0 14px rgba(0, 0, 0, 0.9),
+    0 0 14px rgba(0, 255, 102, 0.18);
 }
 
 .rules-item::before {
@@ -256,10 +283,11 @@
 }
 
 .rules-index {
-  color: #6ee7b7;
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: rgb(0, 255, 102);
   text-shadow:
-    0 0 4px rgba(110, 231, 183, 0.85),
-    0 0 10px rgba(16, 185, 129, 0.9);
+    0 0 6px rgba(0, 255, 102, 0.9);
 }
 
 .rules-text {
@@ -271,21 +299,26 @@
 
 /* Close button */
 .rules-close-btn {
-  border: 2px solid #10b981;
+  margin-top: 22px;
+  padding: 10px 26px;
+
+  border: 2px solid rgb(0, 255, 102);
   background: rgba(0, 0, 0, 0.9);
   color: #e5e7eb;
+
+  letter-spacing: 0.25em;
+
   box-shadow:
-    0 0 12px rgba(16, 185, 129, 0.8),
-    0 0 24px rgba(16, 185, 129, 0.6);
+    0 0 18px rgba(0, 255, 102, 0.7),
+    inset 0 0 12px rgba(0, 0, 0, 0.9);
+
   transition: all 0.25s ease;
 }
 
 .rules-close-btn:hover {
-  background: rgba(16, 185, 129, 0.15);
-  color: #bbf7d0;
+  background: rgba(0, 255, 102, 0.12);
   box-shadow:
-    0 0 18px rgba(16, 185, 129, 1),
-    0 0 32px rgba(5, 150, 105, 0.9);
+    0 0 26px rgba(0, 255, 102, 1);
 }
 
 .rules-close-btn:active {
@@ -294,14 +327,150 @@
 
 @media (max-width: 640px) {
   .rules-modal {
-    padding: 1.75rem 1.5rem;
+    padding: 1.6rem 1.4rem;
   }
 
   .rules-title {
     font-size: 1.15rem;
   }
 
-  .font-vt323 {
-    font-size: 20px;
+  .rules-item {
+    padding: 12px 14px;
   }
+}
+
+
+
+/* ===================== */
+/* GREEN HEADING FLICKER */
+/* ===================== */
+
+@keyframes greenTitleFlicker {
+  0% {
+    opacity: 0.85;
+    text-shadow:
+      0 0 6px rgba(0, 255, 102, 0.4),
+      0 0 14px rgba(0, 255, 102, 0.25);
+  }
+
+  3% {
+    opacity: 1;
+    text-shadow:
+      0 0 10px rgba(0, 255, 102, 0.9),
+      0 0 26px rgba(0, 255, 102, 0.7);
+  }
+
+  6% {
+    opacity: 0.75;
+    text-shadow:
+      0 0 4px rgba(0, 255, 102, 0.3);
+  }
+
+  9% {
+    opacity: 1;
+    text-shadow:
+      0 0 14px rgba(0, 255, 102, 1),
+      0 0 34px rgba(0, 255, 102, 0.85);
+  }
+
+  12% {
+    opacity: 0.9;
+    text-shadow:
+      0 0 8px rgba(0, 255, 102, 0.5);
+  }
+
+  100% {
+    opacity: 1;
+    text-shadow:
+      0 0 10px rgba(0, 255, 102, 0.8),
+      0 0 22px rgba(0, 255, 102, 0.6);
+  }
+}
+
+/* ===================== */
+/* 5-BOX RULES GRID      */
+/* ===================== */
+
+.rules-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px 18px;
+  justify-items: center;
+  margin-top: 20px;
+}
+
+/* Center last box */
+.rules-grid .center {
+  grid-column: 1 / -1;
+}
+
+/* RULE BOX STYLE */
+.rule-box {
+  width: 100%;
+  max-width: 220px;
+  padding: 16px 14px;
+
+  text-align: center;
+  border-radius: 16px;
+
+  background: #000;
+  border: 2px solid rgb(0, 255, 102);
+
+  color: #e5e7eb;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  line-height: 1.35;
+
+  box-shadow:
+    0 0 16px rgba(0, 255, 102, 0.9),
+    0 0 38px rgba(0, 255, 102, 0.45),
+    inset 0 0 14px rgba(0, 0, 0, 0.95);
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.rule-box:hover {
+  transform: scale(1.06);
+  box-shadow:
+    0 0 22px rgba(0, 255, 102, 1),
+    0 0 50px rgba(0, 255, 102, 0.6);
+}
+
+/* MOBILE POLISH */
+@media (max-width: 640px) {
+  .rule-box {
+    max-width: 180px;
+    font-size: 0.72rem;
+  }
+}
+
+
+/* ===================== */
+/* RULE HEADING (OUTSIDE)*/
+/* ===================== */
+
+.rule-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Center last item */
+.rule-wrapper.center {
+  grid-column: 1 / -1;
+}
+
+/* HEADING STYLE */
+.rule-heading {
+  font-size: 0.85rem;
+  letter-spacing: 0.28em;
+  color: rgb(0, 255, 102);
+  opacity: 0.85;
+  animation: greenTitleFlicker 2.5s steps(1, end) 1;
+
+
+
+  text-shadow:
+    0 0 8px rgba(0, 255, 102, 0.7);
 }

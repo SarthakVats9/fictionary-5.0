@@ -1,77 +1,14 @@
-/*import React from "react";
-import { motion } from "framer-motion"; // Import Framer Motion for animations
-import "./RulesModal.css";
-
-// Rules data to be shared
-export const rulesData = [
-  "Answering each question will award you 10 points",
-  "With every question answered, you earn coins.",
-  "Coins can be redeemed against Power Ups in the Shop section",
-  "Each question's hint will be provided after a specific time displayed in the timer",
-  "No negative scoring for wrong answers. This means you can try any question for an unlimited number of times",
-];
-
-const RulesModal = ({ isOpen, onClose }) => {
-  if (!isOpen) return null;
-
-  return (
-    <div className="fixed inset-0 bg-gray-900 bg-opacity-80 flex justify-center items-center z-50">
-      <motion.div
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0, opacity: 0 }}
-        transition={{ duration: 0.5, type: "spring" }}
-        className="bg-gray-800 border-4 border-pink-500 p-8 rounded-lg shadow-lg max-w-xl text-center"
-      >
-        <h2 className="text-pink-500 font-pixel text-2xl mb-4 glow">
-          Game Rules
-        </h2>
-        <ul className="text-blue-300 text-1xl space-y-4 font-vt323">
-          {rulesData.map((rule, index) => (
-            <motion.li
-              key={index}
-              initial={{ x: -100, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: index * 0.2, duration: 0.5 }}
-              className="flex items-start space-x-2 text-start"
-            >
-              <span className="font-bold text-pink-500">{index + 1}.</span>
-              <span>{rule}</span>
-            </motion.li>
-          ))}
-        </ul>
-        <motion.button
-          onClick={onClose}
-          className="mt-4 bg-pink-900 text-gray-900 font-pixel px-4 py-2 rounded-lg hover:bg-pink-600 glow"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          Close
-        </motion.button>
-      </motion.div>
-    </div>
-  );
-};
-
-export default RulesModal;
-
-
-*/
-
-
-
-
 import React from "react";
-import { motion } from "framer-motion"; // Import Framer Motion for animations
+import { motion } from "framer-motion";
 import "./RulesModal.css";
 
-// Rules data to be shared
+/* Short, clean rules for boxes */
 export const rulesData = [
-  "Answering each question will award you 10 points",
-  "With every question answered, you earn coins.",
-  "Coins can be redeemed against Power Ups in the Shop section",
-  "Each question's hint will be provided after a specific time displayed in the timer",
-  "No negative scoring for wrong answers. This means you can try any question for an unlimited number of times",
+  { title: "SCORING", text: "+10 points per correct answer" },
+  { title: "COINS", text: "Earn coins for every answer" },
+  { title: "STUCK?", text: "Redeem coins in the shop for powerups" },
+  { title: "CONFUSED?", text: "Hints unlock after timer runs out" },
+  { title: "SCARED OF BEING WRONG?", text: "Unlimited attempts allowed, no negative marking!" },
 ];
 
 const RulesModal = ({ isOpen, onClose }) => {
@@ -79,53 +16,51 @@ const RulesModal = ({ isOpen, onClose }) => {
 
   return (
     <div className="fixed inset-0 rules-backdrop flex justify-center items-center z-50">
-      {/* Floating stars, shooting stars and soft galaxies */}
+      {/* Background effects */}
       <div className="rules-stars">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
       </div>
       <div className="rules-shooting-stars">
-        <span></span>
-        <span></span>
+        <span></span><span></span>
       </div>
       <div className="rules-galaxies"></div>
+
       <motion.div
-        initial={{ scale: 0, opacity: 0 }}
+        initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0, opacity: 0 }}
-        transition={{ duration: 0.5, type: "spring" }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        transition={{ duration: 0.45, ease: "easeOut" }}
         className="rules-modal"
       >
-        <h2 className="rules-title font-pixel text-2xl mb-4 glow">
-          Game Rules
+        <h2 className="rules-title font-pixel text-2xl mb-6 glow">
+          SYSTEM PROTOCOLS
         </h2>
-        <ul className="rules-list text-1xl space-y-4 font-vt323">
-          {rulesData.map((rule, index) => (
-            <motion.li
-              key={index}
-              initial={{ x: -100, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: index * 0.2, duration: 0.5 }}
-              className="rules-item flex items-start space-x-2 text-start"
-            >
-              <span className="rules-index font-bold">{index + 1}.</span>
-              <span className="rules-text">{rule}</span>
-            </motion.li>
-          ))}
-        </ul>
+
+        {/* 5 BOX GRID */}
+      <div className="rules-grid font-vt323">
+  {rulesData.map((rule, index) => (
+    <motion.div
+      key={index}
+      initial={{ opacity: 0, scale: 0.85 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ delay: index * 0.12 }}
+      className={`rule-wrapper ${index === 4 ? "center" : ""}`}
+    >
+      <div className="rule-heading">{rule.title}</div>
+      <div className="rule-box">{rule.text}</div>
+    </motion.div>
+  ))}
+</div>
+
+
         <motion.button
           onClick={onClose}
-          className="rules-close-btn mt-4 font-pixel px-4 py-2 rounded-lg glow"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+          className="rules-close-btn mt-8 font-pixel px-5 py-2 rounded-lg glow"
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.92 }}
         >
-          Close
+          CLOSE
         </motion.button>
       </motion.div>
     </div>

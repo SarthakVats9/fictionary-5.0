@@ -3,7 +3,7 @@ import { Menu, Close } from "@mui/icons-material";
 import styles from "./NavBar.module.css";
 import RulesModal from "../../pages/Rules/RulesModal";
 import useContext from "../../pages/context/UserContext";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import endpoints from "../../utils/APIendpoints";
 import CloseIcon from "@mui/icons-material/Close";
 
@@ -20,6 +20,8 @@ const Navbar = () => {
   const toggleButtonRef = useRef(null);
   const context = useContext();
   const navigate = useNavigate();
+  const location = useLocation();
+
   const refresh = useCallback(() => {
     fetch(endpoints.CHECK_GAME_LIVE).then((res) => {
       if (res.status === 200) {
@@ -67,12 +69,18 @@ const Navbar = () => {
     <>
       <nav className="bg-black px-8 py-3 flex justify-between items-center border-b border-green-500">
 
-        {/* BRAND */}
-        <Link to="/">
-          <div className={styles.brand}>
-            FICTIONARY
-          </div>
-        </Link>
+        {/* BRAND — STAGNANT HOME */}
+        <div
+          className={styles.brand}
+          onClick={() => {
+            if (location.pathname !== "/") {
+              navigate("/");
+            }
+            setIsOpen(false);
+          }}
+        >
+          FICTIONARY
+        </div>
 
         {/* MOBILE ICON */}
         <div

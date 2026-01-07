@@ -78,8 +78,6 @@ const PowerUpsViews = ({ card, refreshUpdateState, onCardRedeemed }) => {
           onCardRedeemed(card.desc);
         }
       });
-
-    setIsClicked(!isClicked);
   };
 
   useEffect(() => {
@@ -105,31 +103,30 @@ const PowerUpsViews = ({ card, refreshUpdateState, onCardRedeemed }) => {
 
  <div className="flex flex-col items-center gap-1">
   {/* CARD */}
-  <div className="relative w-[280px] h-[420px]">
+ <div
+    className="card-wrapper relative w-[280px] h-[420px] cursor-pointer"
+    onClick={handleClick}
+  >
+    {/* CARD IMAGE */}
     <img
       src={ui.bg}
       alt={ui.title}
-      className={`w-full h-full card-hover object-contain ${ui.glow}`}
+      className={`w-full h-full object-contain card-float ${ui.glow}`}
       draggable={false}
     />
+{/* DESCRIPTION PANEL (MUST BE INSIDE) */}
+    <div className="card-info text-center ">
+      <p>{card.desc}</p>
 
-    {/* TITLE OVERLAY */}
-    {/* <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-      <h3 className="card-title-overlay card-title-glitch">
-        {ui.title}
-      </h3>
-    </div> */}
   </div>
-
-  {/* DESCRIPTION */}
-  <p className="xl:text-3xl sm:text-2xl md:text-3xl lg:text-3xl text-sm font-cd2 leading-tight text-white text-center px-4 max-w-[260px] opacity-90 -mt-3">
-    {card.desc}
-  </p>
-
-  {/* COINS */}
-  <div className="text-base font-bold font-cd1 text-green-300 -mt-1">
+   
+   {/* COINS */}
+  <div className="text-[1rem] font-bold font-cd1 text-center text-green-100 mt-5">
     Coins: {card.coins}
+  </div> 
+   
   </div>
+  
 </div>
 
   );

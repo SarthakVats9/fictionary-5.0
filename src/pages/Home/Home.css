@@ -48,12 +48,14 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between; /* 👈 KEY FIX */
 
   gap: 2vh;
-  padding: 2vh 4vw;
+  padding-top: 8vh;    /* title + character */
+  padding-bottom: 10vh; /* icons + play */
   text-align: center;
 }
+
 
 /* ===============================
    CHARACTER
@@ -263,4 +265,26 @@ font-family: "OrbitronSoft", sans-serif;
     letter-spacing: clamp(3px, 1.2vw, 10px);
   }
 }
+/* ===============================
+   FORCE ORDER IN HOME CENTER
+================================ */
 
+.character-container {
+  order: 1;
+}
+
+.sign {
+  order: 2;
+}
+
+.social-center {
+  order: 3;
+}
+
+.play {
+  order: 4;
+  margin-top: 3vh; /* spacing below icons */
+}
+.social-center {
+  margin-top: 16vh;   /* 👈 pushes icons DOWN */
+}

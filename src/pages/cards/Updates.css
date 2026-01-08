@@ -277,12 +277,12 @@ animation: borderFlicker 2.8s infinite steps(1, end);
 }
 
 @keyframes borderFlicker {
-  0%   { box-shadow: 0 0 6px rgba(0,255,240,0.3); }
-  4%   { box-shadow: 0 0 18px rgba(0,255,240,0.9); }
-  8%   { box-shadow: 0 0 10px rgba(0,255,240,0.4); }
-  12%  { box-shadow: 0 0 22px rgba(0,255,240,1); }
-  16%  { box-shadow: 0 0 8px rgba(0,255,240,0.35); }
-  100% { box-shadow: 0 0 14px rgba(0,255,240,0.6); }
+  0%   { box-shadow: 0 0 6px rgba(0, 255, 102, 0.3); }
+  4%   { box-shadow: 0 0 18px rgba(0, 255, 102, 0.9); }
+  8%   { box-shadow: 0 0 10px rgba(0, 255, 102, 0.4); }
+  12%  { box-shadow: 0 0 22px rgba(0, 255, 102, 1); }
+  16%  { box-shadow: 0 0 8px rgba(0, 255, 102, 0.35); }
+  100% { box-shadow: 0 0 14px rgba(0, 255, 102, 0.6); }
 }
 
 
@@ -348,12 +348,12 @@ animation: borderFlicker 2.8s infinite steps(1, end);
   font-family: 'Orbitron', sans-serif !important;
   letter-spacing: 0.14em;
   font-size: 2.8rem;
-  color: #00ffee;
+  color:  #00ff66;
 
   text-shadow:
-    0 0 20px #00ffee,
-    0 0 40px rgba(0,255,240,0.6),
-    0 0 70px rgba(0,255,240,0.3);
+    0 0 20px rgba(0, 255, 102, 0.85),
+    0 0 40px rgba(0, 255, 102, 0.6),
+    0 0 70px rgba(0, 255, 102, 0.3);
 
   animation: titlePulse 3.4s infinite ease-in-out;
 }
@@ -368,6 +368,8 @@ animation: borderFlicker 2.8s infinite steps(1, end);
    📝 SUBTITLE
    =========================================================== */
 .updates-subtitle {
+  font-family: 'Megatech2';
+  src: url('/assets/Megatech(2).ttf') format('truetype');
   display: block;
   margin-top: 3px;
   max-width: 640px;
@@ -398,11 +400,11 @@ animation: borderFlicker 2.8s infinite steps(1, end);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 
-  border: 1.5px solid rgba(0, 255, 240, 0.55);
+  border: 1.5px solid rgba(0, 255, 102, 0.55);
 
   box-shadow:
-    0 0 25px rgba(0, 255, 240, 0.35),
-    0 0 80px rgba(0, 255, 240, 0.25),
+    0 0 25px rgba(0, 255, 102, 0.35),
+    0 0 80px rgba(0, 255, 102, 0.25),
     inset 0 0 25px rgba(0, 0, 0, 0.95);
 
   display: flex;
@@ -425,9 +427,9 @@ animation: borderFlicker 2.8s infinite steps(1, end);
 
   background: conic-gradient(
     from 180deg,
-    rgba(0, 255, 240, 0.1),
-    rgba(0, 255, 240, 0.45),
-    rgba(0, 255, 240, 0.1)
+    rgba(0, 255, 102, 0.1),
+    rgba(0, 255, 102, 0.45),
+    rgba(0, 255, 102, 0.1)
   );
 
   opacity: 0.7;
@@ -444,7 +446,7 @@ animation: borderFlicker 2.8s infinite steps(1, end);
 
   background: radial-gradient(
     circle at top,
-    rgba(0, 255, 240, 0.18),
+    rgba(0, 255, 102, 0.18),
     transparent 60%
   );
 
@@ -454,13 +456,14 @@ animation: borderFlicker 2.8s infinite steps(1, end);
 
 .update-container:hover {
   transform: scale(1.015);
-  border-color: rgba(0, 255, 240, 0.85);
+  border-color: rgba(0, 255, 102, 0.85);
 
   box-shadow:
-    0 0 40px rgba(0, 255, 240, 0.6),
-    0 0 120px rgba(0, 255, 240, 0.4),
+    0 0 40px rgba(0, 255, 102, 0.6),
+    0 0 120px rgba(0, 255, 102, 0.4),
     inset 0 0 30px rgba(0, 0, 0, 0.95);
 }
+
 
 /* ===========================================================
    📦 UPDATE ITEMS
@@ -481,6 +484,8 @@ animation: borderFlicker 2.8s infinite steps(1, end);
    🧾 SCORE UPDATE CARD
    =========================================================== */
 .scoreUpdate {
+  font-family: 'Megatech2';
+  src: url('/assets/Megatech(2).ttf') format('truetype');
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -541,6 +546,8 @@ animation: borderFlicker 2.8s infinite steps(1, end);
 .scoreUpdate .player {
   font-weight: 600;
   color: #6efff2;
+  font-family: 'Megatech2';
+  src: url('/assets/Megatech(2).ttf') format('truetype');
 
   text-shadow:
     0 0 6px rgba(110, 255, 242, 0.85),
@@ -555,7 +562,8 @@ animation: borderFlicker 2.8s infinite steps(1, end);
   display: flex;
   align-items: center;
   gap: 6px;
-  font-family: 'Orbitron', sans-serif;
+ font-family: 'Megatech2';
+  src: url('/assets/Megatech(2).ttf') format('truetype');
 }
 
 .points.increase {

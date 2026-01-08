@@ -82,14 +82,22 @@ const Question = () => {
       res.json().then((serverResponse) => {
         if (res.status === 200) {
           clearTimeout(timer);
+
           if (serverResponse["not-available"]) {
             setHintAvailable(false);
+            setHintCountdown(null);
           } else if (serverResponse.available) {
             setHintAvailable(true);
             setHintCountdown(null);
           } else {
-            setTimer(setTimeout(updateHint, serverResponse.timeleft * 1000));
+            setHintAvailable(false);
             setHintCountdown(serverResponse.timeleft);
+
+            const t = setTimeout(
+              updateHint,
+              serverResponse.timeleft * 1000
+            );
+            setTimer(t);
           }
         }
       })
@@ -123,7 +131,7 @@ const Question = () => {
         } else if (res.gameOver) {
           navigate("/game-finished");
         } else {
-          clearInterval(timer);
+          clearTimeout(timer);
           updateHint();
           setGameLive(true);
           setState({ question: res, loaded: true });
@@ -209,7 +217,9 @@ const Question = () => {
 
                 <div className="controls">
                   <button
-                    className="sci-btn"
+                    className={`sci-btn ${
+                      hintCountdown !== null || !hintAvailable ? "disabled" : ""
+                    }`}
                     onClick={
                       hintCountdown !== null || !hintAvailable
                         ? () => {}
@@ -223,7 +233,6 @@ const Question = () => {
                   </button>
                 </div>
 
-                {/* ✅ RESTORED METADATA UI (EXACT BEHAVIOR) */}
                 <div className="question-meta">
                   {state.question.show_country && (
                     <>Country: {state.question.country}<br /></>
